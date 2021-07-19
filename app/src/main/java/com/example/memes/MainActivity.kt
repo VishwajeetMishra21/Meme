@@ -50,24 +50,16 @@ class MainActivity : AppCompatActivity() {
         }
 
         //dark theme and light theme
-        big_theme.addOnButtonCheckedListener(object :
-            MaterialButtonToggleGroup.OnButtonCheckedListener {
-            override fun onButtonChecked(
-                group: MaterialButtonToggleGroup?,
-                checkedId: Int,
-                isChecked: Boolean
-            ) {
-                val theme = when (checkedId) {
-                    R.id.dark -> AppCompatDelegate.MODE_NIGHT_YES
-                    else -> AppCompatDelegate.MODE_NIGHT_NO
-                }
-                AppCompatDelegate.setDefaultNightMode(theme)
+        big_theme.addOnButtonCheckedListener { group, checkedId, isChecked ->
+            val theme = when (checkedId) {
+                R.id.dark -> AppCompatDelegate.MODE_NIGHT_YES
+                else -> AppCompatDelegate.MODE_NIGHT_NO
             }
+            AppCompatDelegate.setDefaultNightMode(theme)
+        }
 
-        })
 
-
-         //Sharing the Meme
+        //Sharing the Meme
         share.setOnClickListener {
             val intent = Intent(Intent.ACTION_SEND)
             intent.type = "text/plain"
